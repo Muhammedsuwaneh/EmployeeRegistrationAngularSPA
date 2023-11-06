@@ -1,0 +1,41 @@
+<div class="form mt-3 mb-3">
+    <form [formGroup]="form" (ngSubmit)="addEmployee()">
+        <input type="hidden" formControlName="employeeId" id="employeeId" />
+        <input type="hidden" formControlName="employeeKey" id="employeeKey" />
+        <div class="mb-3 p-1">
+            <input type="text" placeholder="First Name" class="form-control" id="firstName" formControlName="firstName">
+        </div>
+        <div class="mb-3 p-1">
+            <input type="text" placeholder="Last Name" class="form-control" id="lastName" formControlName="lastName">
+        </div>
+        <div class="input-group flex-nowrap ">
+            <span class="input-group-text" id="addon-wrapping">@</span>
+            <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" formControlName="email">
+        </div>
+        <div class="mb-3 mt-3">
+            <input type="text" placeholder="Phone Number" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Role</label>
+            <select class="form-select" id="inputGroupSelect01" formControlName="role">
+              <option value="HR" selected>HR</option>
+              <option value="Developer">Developer</option>
+              <option value="Manager">Manager</option>
+              <option value="Economist">Economist</option>
+              <option value="Recruiter">Recruiter</option>
+            </select>
+          </div>
+        <div class="input-group mb-3 p-1">
+            <span class="input-group-text">$</span>
+            <input type="number" formControlName="salary" id="salary" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-text">.00</span>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="isButtonDisabled">Add</button>
+        <button type="button" class="btn btn-warning mx-1" [disabled]="!isButtonDisabled" (click)="updateEmployee(form)">Update</button>
+        <button type="button" class="btn btn-outline-danger mx-1" (click)="clearInputFields()" [disabled]="!isButtonDisabled">Clear</button>
+    </form>
+    <!--- employee list -->
+    <app-employees-component [employees]="employees" (EditEmployeeInfoEvent)="loadFormInputFieldsWithData($event)"
+    (DeleteEmployeeInfoEvent)="onEmployeeDelete($event)">
+    </app-employees-component>
+</div>

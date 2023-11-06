@@ -63,10 +63,15 @@
               "browserTarget": "employeeApp:build:production"
             },
             "development": {
-              "browserTarget": "employeeApp:build:development"
+              "browserTarget": "employeeApp:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "browserTarget": "move-safe:build",
+            "proxyConfig": "src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -87,12 +92,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e7044aee-0a4b-43f3-8586-4bfca21056dc"
   }
 }
